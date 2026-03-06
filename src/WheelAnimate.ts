@@ -20,8 +20,6 @@ export default class WheelAnimate {
   private start: number | undefined;
   private speed: { t: number; c: number };
   private defaultSpeed: number;
-  private target: number; // Target position for animations.
-  private size: number;
   private direction: "up" | "down" | "";
   private delta: number;
   private sizeTotal: number = 0;
@@ -45,8 +43,6 @@ export default class WheelAnimate {
     this.curve = this.curve.bind(this);
     this.speed = { t: 1, c: 1 };
     this.defaultSpeed = 0.5;
-    this.target = 0; // Target position for animations.
-    this.size = 0; // Total height of content.
     this.direction = "";
     this.delta = 0;
     this.scroll = {
@@ -73,8 +69,8 @@ export default class WheelAnimate {
     this.radiusLevel = 1;
     this.reverse = false;
     this.childsPics.forEach((el, index) => {
-      el.querySelector(".blob")!.style.backgroundImage =
-        `url(https://picsum.photos/id/${index}/400/400)`;
+      const _blob = el.querySelector(".blob") as HTMLElement;
+      _blob!.style.backgroundImage = `url(https://picsum.photos/id/${index}/400/400)`;
     });
 
     const timeline = gsap.timeline();
@@ -176,7 +172,7 @@ export default class WheelAnimate {
 
   updateElements(scroll: number, t: number) {
     // console.log(this.direction);
-    this.childs.forEach((el, index) => {
+    this.childs.forEach((el) => {
       if (this.direction == "up") {
         if (
           this.getRectValue(el, this.boundSet.first) <
@@ -203,9 +199,10 @@ export default class WheelAnimate {
       ? `translate(0,${scroll}px)`
       : `translate(${scroll}px,0)`;
   }
-  wheel(e) {
+  wheel(e: WheelEvent) {
     // Handle scroll input using mouse wheel.
-    let t = e.wheelDeltaY || -1 * e.deltaY;
+    // let t = e.wheelDeltaY || -1 * e.deltaY;
+    let t = -1 * e.deltaY;
     t *= 0.254;
     this.scroll.target += -t;
     // console.log(`scroll位置：${this.scroll.target}`);
