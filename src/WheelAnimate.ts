@@ -129,9 +129,9 @@ export default class WheelAnimate {
     gui.add(obj, "defaultSpeed", 0.1, 10, 0.01).onChange((newValue: number) => {
       this.defaultSpeed = newValue;
     });
-    gui.add(obj, "ease", 0.01, 0.999, 0.001).onChange((newValue: number) => {
-      this.defaultSpeed = newValue;
-    });
+    // gui.add(obj, "ease", 0.01, 0.999, 0.001).onChange((newValue: number) => {
+    //   this.defaultSpeed = newValue;
+    // });
     this.list.dataset.direction = this.dir ? "vertical" : "horizontal";
     window.addEventListener("wheel", this.wheel);
     if (window.location.hash !== "#stop") {
