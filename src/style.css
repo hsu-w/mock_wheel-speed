@@ -34,6 +34,13 @@ html {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  /* background: #f5856c;
+  background: linear-gradient(
+    90deg,
+    rgba(245, 133, 108, 1) 0%,
+    rgba(225, 189, 255, 1) 100%
+  ); */
+  background: #000;
 }
 .wa__border {
   position: absolute;
@@ -223,6 +230,8 @@ html {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  border: calc(var(--bW) * 0.03) solid #fff;
 }
 @keyframes blobSkew {
   /* 0% {

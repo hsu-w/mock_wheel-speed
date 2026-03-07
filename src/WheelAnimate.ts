@@ -216,6 +216,13 @@ export default class WheelAnimate {
       this.sizeTotal = this.dir
         ? this.list.clientHeight
         : this.list.clientWidth;
+
+      this.childs.forEach((el) => {
+        el.count = 0;
+      });
+      this.scroll.current = 0; // Current scroll position.
+      this.scroll.target = 0; // Desired scroll position.
+      this.scroll.last = 0; // Last recorded scroll position.
     };
     window.addEventListener("resize", resizing);
     resizing();
